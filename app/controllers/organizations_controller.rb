@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
     @organizations = Organization.all
   end
 
-  # def specific
-  #   @organization = Organization.find(params[:id])
-  # end
+  def specific
+    @organization = Organization.find(params[:id])
+  end
 end
