@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2019_02_20_015735) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
-    t.integer "organization_id"
+    t.bigint "organization_id"
     t.string "street"
     t.string "city"
     t.string "state"
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_015735) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.integer "organization_id"
+    t.bigint "organization_id"
     t.string "name"
     t.string "job_title"
     t.string "email_address"
@@ -42,4 +45,6 @@ ActiveRecord::Schema.define(version: 2019_02_20_015735) do
     t.index ["organization_id"], name: "index_people_on_organization_id"
   end
 
+  add_foreign_key "addresses", "organizations"
+  add_foreign_key "people", "organizations"
 end
